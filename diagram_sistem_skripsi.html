@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumpulan Diagram Rekayasa Sistem - Ahmad Handoko Law Office</title>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Mermaid.js for Rendering Diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --navy-primary: #0f172a;
+            --navy-secondary: #1e293b;
+            --gold-accent: #c9a84c;
+            --gold-light: #fef08a;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        .top-navbar {
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-secondary) 100%);
+            color: #ffffff;
+            padding: 16px 0;
+            border-bottom: 3px solid var(--gold-accent);
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .brand-badge {
+            background-color: var(--gold-accent);
+            color: #0f172a;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Nav Tabs Navigation */
+        .nav-pills-custom {
+            background: #ffffff;
+            padding: 8px 12px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+
+        .nav-pills-custom .nav-link {
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 8px 14px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-pills-custom .nav-link:hover {
+            background-color: #f1f5f9;
+            color: var(--navy-primary);
+        }
+
+        .nav-pills-custom .nav-link.active {
+            background-color: var(--navy-primary);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(15,23,42,0.25);
+        }
+
+        /* Diagram Cards */
+        .diagram-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 35px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .diagram-header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .diagram-header h4 {
+            margin: 0;
+            color: var(--navy-primary);
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .diagram-header h4 i {
+            color: var(--gold-accent);
+        }
+
+        .diagram-canvas {
+            background: #ffffff;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 380px;
+            overflow-x: auto;
+        }
+
+        .diagram-footer {
+            background: #f8fafc;
+            border-top: 1px solid var(--border-color);
+            padding: 20px 24px;
+        }
+
+        .alert-academic {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 13.5px;
+            color: #1e3a8a;
+            margin-bottom: 0;
+        }
+
+        .alert-academic strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        .spec-badge {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Floating Back To Top / Print */
+        .btn-floating {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-gold {
+            background: var(--gold-accent);
+            color: #ffffff;
+            border: none;
+            font-weight: 600;
+        }
+        .btn-gold:hover {
+            background: #b5943b;
+            color: #ffffff;
+        }
+
+        @media print {
+            .top-navbar, .nav-pills-custom, .btn-floating, .d-print-none {
+                display: none !important;
+            }
+            .diagram-card {
+                box-shadow: none;
+                border: 1px solid #000000;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            body {
+                background: #ffffff;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="top-navbar">
+        <div class="container-fluid px-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <div style="background: var(--gold-accent); width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                        <i class="fas fa-balance-scale text-dark fs-5"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2">
+                            <h5 class="mb-0 fw-bold">Dokumentasi Diagram Rekayasa Sistem</h5>
+                            <span class="brand-badge">Skripsi</span>
+                        </div>
+                        <small class="text-light opacity-75">Sistem Informasi Layanan &amp; Konsultasi Hukum pada Kantor Ahmad Handoko Law Office Bandar Lampung</small>
+                    </div>
+                </div>
+                <div class="d-flex gap-2 d-print-none">
+                    <button onclick="window.print()" class="btn btn-gold btn-sm px-3 shadow-sm">
+                        <i class="fas fa-print me-1"></i> Cetak Dokumen / PDF
+                    </button>
+                    <a href="http://127.0.0.1:8000" target="_blank" class="btn btn-outline-light btn-sm px-3">
+                        <i class="fas fa-external-link-alt me-1"></i> Buka Aplikasi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid px-4 py-4">
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-pills-custom d-print-none">
+            <a class="nav-link active" href="#sec-erd"><i class="fas fa-database me-1"></i> 1. ERD (3NF)</a>
+            <a class="nav-link" href="#sec-usecase"><i class="fas fa-users-cog me-1"></i> 2. Use Case Diagram</a>
+            <a class="nav-link" href="#sec-activity"><i class="fas fa-project-diagram me-1"></i> 3. Activity Diagrams</a>
+            <a class="nav-link" href="#sec-flowchart"><i class="fas fa-sitemap me-1"></i> 4. Flowcharts</a>
+            <a class="nav-link" href="#sec-sequence"><i class="fas fa-stream me-1"></i> 5. Sequence Diagrams</a>
+            <a class="nav-link" href="#sec-class"><i class="fas fa-cube me-1"></i> 6. Class Diagram (UML)</a>
+            <a class="nav-link" href="#sec-state"><i class="fas fa-traffic-light me-1"></i> 7. State Machine Diagram</a>
+            <a class="nav-link" href="#sec-deployment"><i class="fas fa-server me-1"></i> 8. Deployment Diagram</a>
+        </nav>
+
+        <!-- ============================================================== -->
+        <!-- 1. ENTITY RELATIONSHIP DIAGRAM (ERD)                           -->
+        <!-- ============================================================== -->
+        <section id="sec-erd">
+            <div class="diagram-card">
+                <div class="diagram-header">
+                    <div>
+                        <h4><i class="fas fa-database"></i> 1. Entity Relationship Diagram (ERD) - Skema Ternormalisasi 3NF</h4>
+                        <small class="text-muted">Notasi Crow's Foot: Relasi antar-tabel tanpa anomali pembaruan &amp; dependensi transitif</small>
+                    </div>
+                    <div>
+                        <span class="spec-badge"><i class="fas fa-table"></i> 7 Entitas Tabel</span>
+                        <span class="spec-badge"><i class="fas fa-check-circle text-success"></i> Standar 1NF - 3NF</span>
+                    </div>
+                </div>
+                <div class="diagram-canvas">
+                    <pre class="mermaid">
+erDiagram
+    USER_ROLES ||--o{ USERS : "memiliki hak akses (1:N)"
+    USERS ||--o{ FORMULIR_KONSULTASI : "mengajukan perkara (1:N)"
+    USERS ||--o{ FORMULIR_KONSULTASI : "ditugaskan mendampingi (1:N)"
+    KATEGORI_KASUS ||--o{ FORMULIR_KONSULTASI : "mengkategorikan (1:N)"
+    FORMULIR_KONSULTASI ||--o| KONTRAK_KESEPAKATAN : "menghasilkan (1:1)"
+    FORMULIR_KONSULTASI ||--o{ PEMBAYARAN : "diterbitkan tagihan (1:N)"
+    FORMULIR_KONSULTASI ||--o{ PESAN_CHAT : "memiliki riwayat (1:N)"
+    USERS ||--o{ PESAN_CHAT : "mengirim pesan (1:N)"
+
+    USER_ROLES {
+        bigint id PK
+        varchar nama_role "Unique (sekretaris, pengacara, klien)"
+        varchar deskripsi
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    USERS {
+        bigint id PK
+        bigint role_id FK "References USER_ROLES(id)"
+        varchar nama_lengkap
+        varchar username "Unique"
+        varchar email "Unique, Nullable"
+        varchar password "Bcrypt Hashed"
+        varchar no_hp
+        text alamat
+        varchar foto
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    KATEGORI_KASUS {
+        bigint id PK
+        varchar nama_kategori "Pidana, Perdata, TUN, Korporasi, Naker"
+        text deskripsi
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    FORMULIR_KONSULTASI {
+        bigint id PK
+        varchar no_permohonan "Unique (REG/YYYY/MON/XXXX)"
+        bigint klien_id FK "References USERS(id)"
+        bigint pengacara_id FK "References USERS(id) - Nullable"
+        bigint kategori_id FK "References KATEGORI_KASUS(id)"
+        varchar tempat_lahir
+        date tgl_lahir
+        enum jenis_kelamin "L, P"
+        varchar agama
+        varchar pekerjaan
+        text uraian_singkat_perkara
+        varchar bukti_awal
+        varchar ttd_pemohon
+        varchar ttd_konsultan
+        enum status_verifikasi "pending, disetujui, ditolak"
+        enum status_kasus "baru, dalam_progres, selesai"
+        enum status_jadwal_temu "belum, dijadwalkan, selesai"
+        datetime tgl_waktu_jadwal_temu
+        varchar catatan_jadwal_temu
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    KONTRAK_KESEPAKATAN {
+        bigint id PK
+        bigint formulir_id FK "References FORMULIR_KONSULTASI(id)"
+        varchar berkas_kontrak "File PDF Kuasa Hukum"
+        text keterangan
+        varchar status_sidang "Pemberkasan, Mediasi, Putusan"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PEMBAYARAN {
+        bigint id PK
+        bigint formulir_id FK "References FORMULIR_KONSULTASI(id)"
+        decimal jumlah_tagihan "15, 2 (Precision Monetary)"
+        varchar bukti_bayar "Path file bukti transfer"
+        text keterangan
+        enum status "belum_bayar, menunggu_verifikasi, lunas"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PESAN_CHAT {
+        bigint id PK
+        bigint formulir_id FK "References FORMULIR_KONSULTASI(id)"
+        bigint pengirim_id FK "References USERS(id)"
+        text pesan
+        boolean is_read "Status dibaca"
+        timestamp created_at
+        timestamp updated_at
+    }
+                    </pre>
+                </div>
+                <div class="diagram-footer">
+                    <div class="alert-academic">
+                        <strong><i class="fas fa-graduation-cap me-1"></i> Penjelasan untuk Sidang Skripsi (Normalisasi 3NF):</strong>
+                        Pada skema awal, terdapat dependensi transitif di mana biodata klien diulang di formulir, dan tabel pembayaran memuat <code>id_user</code> secara redundan. Pada ERD 3NF yang diperbarui ini, setiap entitas non-kunci hanya bergantung langsung pada <em>Primary Key</em> miliknya. Pembayaran terikat secara unik ke <code>formulir_id</code>, dan seluruh data profil terpusat di tabel <code>users</code>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 2. USE CASE DIAGRAM                                            -->
+        <!-- ============================================================== -->
+        <section id="sec-usecase">
+            <div class="diagram-card">
+                <div class="diagram-header">
+                    <div>
+                        <h4><i class="fas fa-users-cog"></i> 2. Use Case Diagram Sistem</h4>
+                        <small class="text-muted">Interaksi fungsional antara 3 Aktor Sistem dengan Batasan Sistem (System Boundary)</small>
+                    </div>
+                    <div>
+                        <span class="spec-badge"><i class="fas fa-user"></i> 3 Aktor Utama</span>
+                        <span class="spec-badge"><i class="fas fa-cubes"></i> 14 Use Cases</span>
+                    </div>
+                </div>
+                <div class="diagram-canvas">
+                    <pre class="mermaid">
+flowchart LR
+    subgraph Aktor["👥 Aktor Sistem"]
+        Klien["👤 Klien (Pemohon)"]
+        Admin["👤 Sekretaris (Admin Kantor)"]
+        Pengacara["👤 Pengacara (Advokat)"]
+    end
+
+    subgraph Boundary["Sistem Informasi Layanan & Konsultasi Hukum (Ahmad Handoko Law Office)"]
+        UC1(["Registrasi & Login Akun"])
+        UC2(["Melihat Profil & Layanan Kantor"])
+        UC3(["Mengajukan Formulir Konsultasi"])
+        UC4(["Mengunggah Bukti Awal"])
+        UC5(["Verifikasi Berkas Permohonan"])
+        UC6(["Menugaskan Advokat Pembimbing"])
+        UC7(["Menetapkan Jadwal Temu Resmi"])
+        UC8(["Menerbitkan Tagihan Administrasi"])
+        UC9(["Mengunggah Bukti Transfer"])
+        UC10(["Konfirmasi Pembayaran Lunas"])
+        UC11(["Konsultasi Daring (Live Chat)"])
+        UC12(["Unggah Kontrak & Surat Kuasa"])
+        UC13(["Update Tahapan Sidang & Progres"])
+        UC14(["Cetak Rekapitulasi Laporan"])
+    end
+
+    %% Relasi Klien
+    Klien --> UC1
+    Klien --> UC2
+    Klien --> UC3
+    UC3 -.->|&laquo;include&raquo;| UC4
+    Klien --> UC9
+    Klien --> UC11
+
+    %% Relasi Sekretaris (Admin)
+    Admin --> UC1
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC7
+    Admin --> UC8
+    Admin --> UC10
+    Admin --> UC11
+    Admin --> UC14
+
+    %% Relasi Pengacara
+    Pengacara --> UC1
+    Pengacara --> UC11
+    Pengacara --> UC12
+    Pengacara --> UC13
+                    </pre>
+                </div>
+                <div class="diagram-footer">
+                    <div class="alert-academic">
+                        <strong><i class="fas fa-info-circle me-1"></i> Keterangan Aktor &amp; Hubungan Relasi:</strong>
+                        <ul>
+                            <li><strong>Klien:</strong> Mengakses katalog publik, mengajukan konsultasi baru (yang secara <em>&laquo;include&raquo;</em> menyertakan unggah bukti awal), mengunggah bukti bayar, dan chat konsultasi.</li>
+                            <li><strong>Sekretaris (Admin):</strong> Pusat operasional administrasi yang memvalidasi berkas, menjadwalkan temu resmi, menunjuk advokat, menerbitkan tagihan, memverifikasi lunas, dan mencetak laporan resmi.</li>
+                            <li><strong>Pengacara (Advokat):</strong> Menangani perkara yang ditugaskan, memberikan advis hukum di chat, mengunggah kontrak kuasa hukum, dan memperbarui status persidangan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 3. ACTIVITY DIAGRAMS (5 WORKFLOWS)                             -->
+        <!-- ============================================================== -->
+        <section id="sec-activity">
+            <div class="row">
+                <!-- Activity 1: Pengajuan Konsultasi Klien -->
+                <div class="col-lg-6">
+                    <div class="diagram-card">
+                        <div class="diagram-header">
+                            <div>
+                                <h4><i class="fas fa-file-signature"></i> 3.1 Activity Diagram: Pengajuan Konsultasi (Klien)</h4>
+                                <small class="text-muted">Aktivitas klien dari login hingga nomor registrasi terbit</small>
+                            </div>
+                        </div>
+                        <div class="diagram-canvas">
+                            <pre class="mermaid">
+flowchart TD
+    Start((●)) --> Login[Klien Login ke Sistem]
+    Login --> AksesMenu[Akses Menu 'Ajukan Konsultasi']
+    AksesMenu --> IsiForm[Mengisi Biodata &amp; Kronologi Kasus]
+    IsiForm --> UploadBukti{Ada Bukti Awal?}
+    UploadBukti -- Ya --> PilihFile[Pilih File PDF/JPG/PNG]
+    UploadBukti -- Tidak --> Submit[Klik 'Kirim Permohonan Konsultasi']
+    PilihFile --> Submit
+    Submit --> Validasi{Validasi Input Sistem}
+    Validasi -- Gagal (Data Kurang) --> TampilError[Tampilkan Pesan Validasi Error]
+    TampilError --> IsiForm
+    Validasi -- Sukses --> SimpanDB[(Simpan ke Database)]
+    SimpanDB --> BuatNoReg[Generate No. Permohonan Unik REG/...]
+    BuatNoReg --> SetPending[Set Status Verifikasi: 'Pending']
+    SetPending --> TampilDash[Tampilkan di Dashboard Klien]
+    TampilDash --> End((◉))
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 2: Verifikasi & Penjadwalan Sekretaris -->
+                <div class="col-lg-6">
+                    <div class="diagram-card">
+                        <div class="diagram-header">
+                            <div>
+                                <h4><i class="fas fa-check-double"></i> 3.2 Activity Diagram: Verifikasi &amp; Penjadwalan (Sekretaris)</h4>
+                                <small class="text-muted">Verifikasi dokumen perkara, penugasan advokat &amp; jadwal</small>
+                            </div>
+                        </div>
+                        <div class="diagram-canvas">
+                            <pre class="mermaid">
+flowchart TD
+    Start((●)) --> AdminLogin[Sekretaris Login]
+    AdminLogin --> BukaPerkara[Buka Daftar Permohonan Masuk]
+    BukaPerkara --> Telaah[Telaah Kronologi &amp; Bukti Awal]
+    Telaah --> Keputusan{Keputusan Verifikasi?}
+    Keputusan -- Tolak --> FormTolak[Set Status: 'Ditolak']
+    FormTolak --> UpdateDB1[(Update DB)]
+    Keputusan -- Setujui --> FormSetuju[Set Status: 'Disetujui']
+    FormSetuju --> TugaskanAdvokat[Pilih Advokat yang Menangani]
+    TugaskanAdvokat --> TentukanJadwal[Tetapkan Tanggal &amp; Jam Temu Konsultasi]
+    TentukanJadwal --> TerbitkanTagihan[Terbitkan Nominal Tagihan Administrasi]
+    TerbitkanTagihan --> UpdateDB2[(Update DB)]
+    UpdateDB1 --> NotifikasiKlien[Perubahan Tampil di Portal Klien]
+    UpdateDB2 --> NotifikasiKlien
+    NotifikasiKlien --> End((◉))
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 3: Pembayaran & Verifikasi Transfer -->
+                <div class="col-lg-6">
+                    <div class="diagram-card">
+                        <div class="diagram-header">
+                            <div>
+                                <h4><i class="fas fa-receipt"></i> 3.3 Activity Diagram: Alur Pembayaran &amp; Verifikasi Transfer</h4>
+                                <small class="text-muted">Klien upload bukti bayar, admin konfirmasi lunas</small>
+                            </div>
+                        </div>
+                        <div class="diagram-canvas">
+                            <pre class="mermaid">
+flowchart TD
+    Start((●)) --> KlienLihatTagihan[Klien Buka Detail Kasus &amp; Tagihan]
+    KlienLihatTagihan --> TransferBank[Klien Transfer Manual via Bank/ATM]
+    TransferBank --> UploadStruk[Klien Upload Foto Struk Bukti Transfer]
+    UploadStruk --> UpdateStatusBayar[Sistem Ubah Status: 'Menunggu Verifikasi']
+    UpdateStatusBayar --> AdminCek[Sekretaris Buka Menu Pembayaran]
+    AdminCek --> BukaBukti[Periksa Gambar Struk Transfer]
+    BukaBukti --> ValidasiBank{Dana Masuk ke Rekening Kantor?}
+    ValidasiBank -- Tidak Sesuai --> MintaUlang[Hubungi Klien via Chat untuk Konfirmasi]
+    MintaUlang --> UploadStruk
+    ValidasiBank -- Sesuai/Sah --> KlikLunas[Sekretaris Klik 'Konfirmasi Lunas']
+    KlikLunas --> SimpanLunas[(Status Pembayaran Menjadi 'Lunas')]
+    SimpanLunas --> KlienTerimaKuitansi[Klien Menerima Status Lunas di Dashboard]
+    KlienTerimaKuitansi --> End((◉))
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 4: Penanganan Perkara & Sidang Pengacara -->
+                <div class="col-lg-6">
+                    <div class="diagram-card">
+                        <div class="diagram-header">
+                            <div>
+                                <h4><i class="fas fa-gavel"></i> 3.4 Activity Diagram: Penanganan Perkara &amp; Sidang (Advokat)</h4>
+                                <small class="text-muted">Advokat upload kontrak dan perbarui tahapan persidangan</small>
+                            </div>
+                        </div>
+                        <div class="diagram-canvas">
+                            <pre class="mermaid">
+flowchart TD
+    Start((●)) --> AdvokatLogin[Advokat Login]
+    AdvokatLogin --> BukaPerkaraTugas[Buka Daftar Perkara Ditugaskan]
+    BukaPerkaraTugas --> TelaahBerkas[Telaah Dokumen Perkara Klien]
+    TelaahBerkas --> BuatKontrak[Susun Draft Surat Kuasa &amp; Kontrak]
+    BuatKontrak --> UploadKontrak[Upload File Kontrak PDF ke Sistem]
+    UploadKontrak --> SidangPengadilan[Proses Pendampingan di Pengadilan]
+    SidangPengadilan --> UpdateSidang[Update Status Sidang: Mediasi/Eksepsi/Putusan]
+    UpdateSidang --> CekSelesai{Perkara Telah Selesai?}
+    CekSelesai -- Belum --> SidangPengadilan
+    CekSelesai -- Selesai --> UbahStatus[Ubah Status Kasus Menjadi 'Selesai']
+    UbahStatus --> UpdateDB[(Update Status di Database)]
+    UpdateDB --> ArsipLaporan[Perkara Masuk Rekapitulasi Laporan Akhir]
+    ArsipLaporan --> End((◉))
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 5: Konsultasi Daring (Live Chat) -->
+                <div class="col-12">
+                    <div class="diagram-card">
+                        <div class="diagram-header">
+                            <div>
+                                <h4><i class="fas fa-comments"></i> 3.5 Activity Diagram: Konsultasi Daring (AJAX Polling Chat)</h4>
+                                <small class="text-muted">Pertukaran pesan dua arah tanpa reload halaman</small>
+                            </div>
+                        </div>
+                        <div class="diagram-canvas">
+                            <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Pengirim as User Pengirim (Klien/Advokat)
+    participant Browser as Browser UI (DOM)
+    participant Server as Laravel Controller (ChatController)
+    participant DB as Database (pesan_chat)
+    actor Penerima as User Penerima (Advokat/Klien)
+
+    Pengirim->>Browser: Ketik pesan konsultasi & klik 'Kirim'
+    Browser->>Server: HTTP POST /chat/{id}/kirim (Fetch API + CSRF)
+    Server->>DB: INSERT INTO pesan_chat (formulir_id, pengirim_id, pesan)
+    DB-->>Server: Return ID Pesan Baru & Timestamp
+    Server-->>Browser: JSON Response (Pesan Berhasil Terkirim)
+    Browser->>Browser: Render gelembung pesan saya & Auto-scroll ke bawah
+
+    loop Polling Setiap 3 Detik
+        Penerima->>Browser: Halaman chat aktif di layar
+        Browser->>Server: HTTP GET /chat/{id}/fetch?last_id=X
+        Server->>DB: SELECT * FROM pesan_chat WHERE id > last_id
+        DB-->>Server: Daftar Pesan Baru
+        Server-->>Browser: JSON Array Pesan Baru
+        Browser->>Browser: Append pesan baru ke chat box & Bunyikan notifikasi/scroll
+    end
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 4. FLOWCHARTS (SISTEM & AUTENTIKASI)                           -->
+        <!-- ============================================================== -->
+        <section id="sec-flowchart">
+            <div class="row">
+                <!-- Flowchart Sistem End-to-End -->
+                <div class="col-lg-7">
+                    <div class="diagram-card">
+                        <div class="diagram-header">
+                            <div>
+                                <h4><i class="fas fa-sitemap"></i> 4.1 Flowchart Alur Sistem Layanan Hukum End-to-End</h4>
+                                <small class="text-muted">Diagram alir alur proses bisnis kantor hukum dari hulu ke hilir</small>
+                            </div>
+                        </div>
+                        <div class="diagram-canvas">
+                            <pre class="mermaid">
+flowchart TD
+    Start([Mulai]) --> AksesWeb[/Akses Website Kantor Hukum/]
+    AksesWeb --> CekLogin{Sudah Punya Akun?}
+    CekLogin -- Belum --> Register[Registrasi Akun Klien]
+    Register --> Login[Login ke Sistem]
+    CekLogin -- Sudah --> Login
+
+    Login --> AjukanKonsultasi[/Isi Formulir Permohonan &amp; Unggah Bukti Awal/]
+    AjukanKonsultasi --> VerifikasiAdmin{Verifikasi Sekretaris}
+    VerifikasiAdmin -- Ditolak --> NotifTolak[/Notifikasi Alasan Ditolak/]
+    NotifTolak --> SelesaiFail([Selesai / Pengajuan Batal])
+
+    VerifikasiAdmin -- Disetujui --> AssignLawyer[Sekretaris Assign Advokat]
+    AssignLawyer --> Jadwal[Tetapkan Jadwal Temu Resmi]
+    Jadwal --> Tagihan[Terbitkan Tagihan Biaya Administrasi]
+
+    Tagihan --> KlienTransfer[/Klien Upload Bukti Transfer Bank/]
+    KlienTransfer --> CekBayar{Verifikasi Pembayaran Lunas?}
+    CekBayar -- Belum Sesuai --> KlienTransfer
+    CekBayar -- Lunas --> SesiKonsultasi[/Sesi Konsultasi Daring via Chat &amp; Pertemuan/]
+
+    SesiKonsultasi --> LanjutSidang{Perkara Lanjut ke Pengadilan?}
+    LanjutSidang -- Tidak (Cukup Konsultasi Saja) --> TutupKasus[Ubah Status: Kasus Selesai]
+    LanjutSidang -- Ya --> UploadKontrak[Advokat Upload Berkas Kontrak &amp; Kuasa]
+    UploadKontrak --> ProsesSidang[Update Berkala Tahapan Sidang]
+    ProsesSidang --> SidangSelesai{Sidang / Perkara Berakhir?}
+    SidangSelesai -- Belum --> ProsesSidang
+    SidangSelesai -- Selesai --> TutupKasus
+
+    TutupKasus --> CetakLaporan[/Sekretaris Cetak Rekapitulasi Laporan Kasus &amp; Keuangan/]
+    CetakLaporan --> End([Selesai])
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flowchart Autentikasi Multi-Role -->
+                <div class="col-lg-5">
+                    <div class="diagram-card">
+                        <div class="diagram-header">
+                            <div>
+                                <h4><i class="fas fa-user-lock"></i> 4.2 Flowchart Autentikasi &amp; Role-Based Redirection</h4>
+                                <small class="text-muted">Logika autentikasi dan pengalihan hak akses</small>
+                            </div>
+                        </div>
+                        <div class="diagram-canvas">
+                            <pre class="mermaid">
+flowchart TD
+    Start([Mulai]) --> InputUser[/Input Username &amp; Password/]
+    InputUser --> CariUser[(Cari User di DB)]
+    CariUser --> CekUser{User Ditemukan &amp;<br>Password Cocok?}
+    CekUser -- Tidak --> ErrorMsg[/Tampilkan Error: Kredensial Salah/]
+    ErrorMsg --> InputUser
+
+    CekUser -- Ya --> CekAktif{Akun is_active == 1?}
+    CekAktif -- Tidak --> ErrorAktif[/Tampilkan Error: Akun Nonaktif/]
+    ErrorAktif --> InputUser
+
+    CekAktif -- Ya --> CreateSession[Inisialisasi Session Auth]
+    CreateSession --> PeriksaRole{Periksa Role Pengguna}
+
+    PeriksaRole -- 'klien' --> DashKlien[/Redirect: /klien/dashboard/]
+    PeriksaRole -- 'sekretaris' --> DashAdmin[/Redirect: /admin/dashboard/]
+    PeriksaRole -- 'pengacara' --> DashPengacara[/Redirect: /pengacara/dashboard/]
+
+    DashKlien --> End([Selesai])
+    DashAdmin --> End
+    DashPengacara --> End
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 5. SEQUENCE DIAGRAMS                                           -->
+        <!-- ============================================================== -->
+        <section id="sec-sequence">
+            <div class="diagram-card">
+                <div class="diagram-header">
+                    <div>
+                        <h4><i class="fas fa-stream"></i> 5. Sequence Diagram: Siklus Layanan Hukum &amp; Penugasan</h4>
+                        <small class="text-muted">Interaksi antar Objek, Controller, Model Eloquent, dan Database</small>
+                    </div>
+                </div>
+                <div class="diagram-canvas">
+                    <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Klien
+    participant ViewKlien as Browser (Klien View)
+    participant KlienCtrl as KlienController
+    participant AdminCtrl as AdminController
+    participant ModelFormulir as FormulirKonsultasi (Model)
+    participant DB as MySQL Database
+    actor Sekretaris
+    actor Pengacara
+
+    Note over Klien, ViewKlien: 1. Tahap Pengajuan Permohonan
+    Klien->>ViewKlien: Isi data form & unggah bukti_awal
+    ViewKlien->>KlienCtrl: POST /klien/ajukan-konsultasi
+    KlienCtrl->>ModelFormulir: create([no_permohonan, data, bukti_awal])
+    ModelFormulir->>DB: INSERT INTO formulir_konsultasi
+    DB-->>ModelFormulir: Return success
+    ModelFormulir-->>KlienCtrl: Instance model tersimpan
+    KlienCtrl-->>ViewKlien: Redirect ke Dashboard + Flash Success
+
+    Note over Sekretaris, AdminCtrl: 2. Tahap Verifikasi & Penugasan
+    Sekretaris->>AdminCtrl: GET /admin/perkara/{id}
+    AdminCtrl->>ModelFormulir: with(['klien', 'kategori'])->find(id)
+    ModelFormulir->>DB: SELECT * FROM formulir_konsultasi WHERE id=...
+    DB-->>ModelFormulir: Data perkara
+    ModelFormulir-->>AdminCtrl: Data perkara siap tampil
+    Sekretaris->>AdminCtrl: POST /admin/perkara/{id}/verifikasi (disetujui)
+    AdminCtrl->>DB: UPDATE status_verifikasi='disetujui', status_kasus='dalam_progres'
+    Sekretaris->>AdminCtrl: POST /admin/perkara/{id}/assign (pengacara_id)
+    AdminCtrl->>DB: UPDATE pengacara_id=...
+    Sekretaris->>AdminCtrl: POST /admin/perkara/{id}/jadwal (tgl_waktu)
+    AdminCtrl->>DB: UPDATE tgl_waktu_jadwal_temu=...
+
+    Note over Pengacara, DB: 3. Tahap Penanganan oleh Advokat
+    Pengacara->>DB: GET /pengacara/perkara/{id} (Akses data perkara klien)
+    Pengacara->>DB: POST /pengacara/perkara/{id}/kontrak (Upload PDF kontrak)
+    Pengacara->>DB: POST /pengacara/perkara/{id}/sidang (Update progres sidang)
+                    </pre>
+                </div>
+                <div class="diagram-footer">
+                    <div class="alert-academic">
+                        <strong><i class="fas fa-check-circle me-1"></i> Keunggulan Arsitektur Sequence:</strong>
+                        Diagram urutan ini memvisualisasikan bagaimana prinsip MVC (Model-View-Controller) Laravel bekerja. Controller bertindak sebagai orkestrator yang menerima HTTP Request, memvalidasi input, mendelegasikan transaksi data ke Model Eloquent yang terhubung ke database MySQL, dan mengembalikan respon berupa tampilan Blade View yang interaktif.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 6. CLASS DIAGRAM (UML)                                         -->
+        <!-- ============================================================== -->
+        <section id="sec-class">
+            <div class="diagram-card">
+                <div class="diagram-header">
+                    <div>
+                        <h4><i class="fas fa-cube"></i> 6. Class Diagram (UML) - Struktur Model &amp; Relasi MVC</h4>
+                        <small class="text-muted">Struktur atribut, method bisnis, dan keterhubungan kelas Eloquent Laravel</small>
+                    </div>
+                </div>
+                <div class="diagram-canvas">
+                    <pre class="mermaid">
+classDiagram
+    class UserRole {
+        +int id
+        +string nama_role
+        +string deskripsi
+        +users() HasMany
+    }
+
+    class User {
+        +int id
+        +int role_id
+        +string nama_lengkap
+        +string username
+        +string email
+        +string password
+        +string no_hp
+        +text alamat
+        +string foto
+        +boolean is_active
+        +role() BelongsTo
+        +formulirKonsultasiSebagaiKlien() HasMany
+        +formulirKonsultasiSebagaiPengacara() HasMany
+        +pesanChat() HasMany
+        +isAdmin() bool
+        +isPengacara() bool
+        +isKlien() bool
+    }
+
+    class KategoriKasus {
+        +int id
+        +string nama_kategori
+        +text deskripsi
+        +formulirKonsultasi() HasMany
+    }
+
+    class FormulirKonsultasi {
+        +int id
+        +string no_permohonan
+        +int klien_id
+        +int pengacara_id
+        +int kategori_id
+        +string tempat_lahir
+        +date tgl_lahir
+        +string jenis_kelamin
+        +string agama
+        +string pekerjaan
+        +text uraian_singkat_perkara
+        +string bukti_awal
+        +string ttd_pemohon
+        +string ttd_konsultan
+        +string status_verifikasi
+        +string status_kasus
+        +string status_jadwal_temu
+        +datetime tgl_waktu_jadwal_temu
+        +string catatan_jadwal_temu
+        +klien() BelongsTo
+        +pengacara() BelongsTo
+        +kategori() BelongsTo
+        +kontrak() HasOne
+        +pembayaran() HasOne
+        +pesanChat() HasMany
+        +getLabelStatusVerifikasiAttribute() string
+        +getLabelStatusKasusAttribute() string
+    }
+
+    class KontrakKesepakatan {
+        +int id
+        +int formulir_id
+        +string berkas_kontrak
+        +text keterangan
+        +string status_sidang
+        +formulir() BelongsTo
+    }
+
+    class Pembayaran {
+        +int id
+        +int formulir_id
+        +decimal jumlah_tagihan
+        +string bukti_bayar
+        +text keterangan
+        +string status
+        +formulir() BelongsTo
+        +getLabelStatusAttribute() string
+    }
+
+    class PesanChat {
+        +int id
+        +int formulir_id
+        +int pengirim_id
+        +text pesan
+        +boolean is_read
+        +formulir() BelongsTo
+        +pengirim() BelongsTo
+    }
+
+    UserRole "1" -- "0..*" User : memiliki hak akses
+    User "1" -- "0..*" FormulirKonsultasi : mengajukan (klien)
+    User "1" -- "0..*" FormulirKonsultasi : menangani (pengacara)
+    KategoriKasus "1" -- "0..*" FormulirKonsultasi : mengelompokkan
+    FormulirKonsultasi "1" -- "0..1" KontrakKesepakatan : mengikat
+    FormulirKonsultasi "1" -- "0..*" Pembayaran : memiliki tagihan
+    FormulirKonsultasi "1" -- "0..*" PesanChat : wadah konsultasi
+    User "1" -- "0..*" PesanChat : menuliskan
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 7. STATE MACHINE DIAGRAM                                       -->
+        <!-- ============================================================== -->
+        <section id="sec-state">
+            <div class="diagram-card">
+                <div class="diagram-header">
+                    <div>
+                        <h4><i class="fas fa-traffic-light"></i> 7. State Machine Diagram: Siklus Hidup Status Perkara</h4>
+                        <small class="text-muted">Transisi status verifikasi dan status progres penanganan perkara hukum</small>
+                    </div>
+                </div>
+                <div class="diagram-canvas">
+                    <pre class="mermaid">
+stateDiagram-v2
+    [*] --> DraftPengajuan : Klien Mengisi Form
+    DraftPengajuan --> PendingVerifikasi : Submit Berkas &amp; Bukti Awal
+
+    state PendingVerifikasi {
+        [*] --> CekAdministrasi
+        CekAdministrasi --> TelaahPerkara
+    }
+
+    PendingVerifikasi --> Ditolak : Berkas Tidak Memenuhi Syarat
+    Ditolak --> [*] : Proses Dihentikan / Pengajuan Batal
+
+    PendingVerifikasi --> Disetujui : Dokumen Memenuhi Syarat
+    Disetujui --> PenetapanJadwal : Penugasan Advokat &amp; Jadwal Temu
+    PenetapanJadwal --> PenerbitanTagihan : Sekretaris Terbitkan Biaya
+    PenerbitanTagihan --> MenungguVerifikasiBayar : Klien Upload Bukti Transfer
+    MenungguVerifikasiBayar --> Lunas : Sekretaris Konfirmasi Lunas
+
+    Lunas --> DalamProgres : Pelaksanaan Konsultasi &amp; Pendampingan
+
+    state DalamProgres {
+        [*] --> KonsultasiDaring
+        KonsultasiDaring --> PertemuanTatapMuka
+        PertemuanTatapMuka --> PenyusunanGugatan
+        PenyusunanGugatan --> TahapanSidang
+        TahapanSidang --> PutusanPengadilan
+    }
+
+    DalamProgres --> Selesai : Putusan / Kasus Tuntas Diselesaikan
+    Selesai --> Diarsipkan : Masuk Rekapitulasi Laporan Kantor
+    Arsipkan --> [*]
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 8. DEPLOYMENT & ARCHITECTURE DIAGRAM                           -->
+        <!-- ============================================================== -->
+        <section id="sec-deployment">
+            <div class="diagram-card">
+                <div class="diagram-header">
+                    <div>
+                        <h4><i class="fas fa-server"></i> 8. Deployment &amp; System Architecture Diagram</h4>
+                        <small class="text-muted">Topologi arsitektur infrastruktur web server, basis data, dan penyimpanan berkas</small>
+                    </div>
+                </div>
+                <div class="diagram-canvas">
+                    <pre class="mermaid">
+flowchart TB
+    subgraph ClientLayer["🖥️ Presentation Layer (Client Tier)"]
+        Browser1["💻 Desktop Web Browser<br>(Admin / Pengacara)"]
+        Browser2["📱 Mobile / Smartphone Browser<br>(Klien Pemohon)"]
+    end
+
+    subgraph ServerLayer["⚙️ Application & Web Server Tier (Localhost / Hosting)"]
+        Apache["🌐 Apache HTTP Server (Port 80 / 8000)"]
+        LaravelApp["🚀 Laravel 12 Framework (PHP 8.2)"]
+        
+        subgraph LaravelCore["Komponen Inti Laravel"]
+            Router["Web Routing Engine"]
+            Middleware["CheckRole Auth Middleware"]
+            Controllers["Controllers (Auth, Klien, Admin, Chat, Laporan)"]
+            Eloquent["Eloquent ORM Engine"]
+            Blade["Blade View Engine (Bootstrap 5)"]
+        end
+    end
+
+    subgraph DataLayer["💾 Database & Storage Layer"]
+        MySQL[("🗄️ MySQL Database (Port 3306)<br>Database: db_ahmad_handoko_law")]
+        FileStorage["📁 Storage File System (public/storage)<br>Bukti Awal, Struk Transfer, Kontrak PDF"]
+    end
+
+    %% Relasi Client ke Server
+    Browser1 <-->|HTTP / HTTPS Requests| Apache
+    Browser2 <-->|HTTP / HTTPS Requests| Apache
+    Apache <--> Router
+    Router --> Middleware
+    Middleware --> Controllers
+    Controllers <--> Blade
+    Controllers <--> Eloquent
+    
+    %% Relasi Server ke Data
+    Eloquent <-->|PDO MySQL TCP Connection| MySQL
+    Controllers <-->|File System Storage API| FileStorage
+                    </pre>
+                </div>
+                <div class="diagram-footer">
+                    <div class="alert-academic">
+                        <strong><i class="fas fa-layer-group me-1"></i> Penjelasan Arsitektur Sistem 3-Tier:</strong>
+                        Sistem dirancang menggunakan arsitektur 3-Tier terdistribusi:
+                        1. <strong>Presentation Tier:</strong> Antarmuka responsif Bootstrap 5 yang dapat diakses melalui browser desktop maupun mobile.
+                        2. <strong>Application Tier:</strong> Web server Apache dan framework Laravel 12 (PHP 8.2) yang menangani logika bisnis, otentikasi role, validasi input, dan routing.
+                        3. <strong>Data Tier:</strong> MySQL Database untuk data relasional terstruktur (3NF) dan filesystem disk untuk penyimpanan berkas dokumen (PDF, gambar bukti transfer).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Floating Print Button -->
+    <div class="btn-floating d-print-none">
+        <button onclick="window.print()" class="btn btn-gold btn-lg shadow-lg rounded-pill px-4">
+            <i class="fas fa-print me-2"></i> Cetak / Simpan PDF
+        </button>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn btn-dark btn-lg shadow-lg rounded-circle" title="Kembali ke Atas">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <!-- Initialize Mermaid -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'neutral',
+                securityLevel: 'loose',
+                flowchart: {
+                    useMaxWidth: true,
+                    htmlLabels: true,
+                    curve: 'basis'
+                },
+                er: {
+                    useMaxWidth: true
+                },
+                sequence: {
+                    useMaxWidth: true,
+                    showSequenceNumbers: true
+                }
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

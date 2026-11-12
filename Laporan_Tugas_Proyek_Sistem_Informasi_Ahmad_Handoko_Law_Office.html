@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Proyek - Sistem Informasi Ahmad Handoko Law Office</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 22mm 18mm 22mm 18mm;
+            @bottom-right {
+                content: counter(page);
+                font-size: 9pt;
+                color: #64748b;
+                font-family: 'Segoe UI', Tahoma, sans-serif;
+            }
+            @top-right {
+                content: "Ahmad Handoko Law Office - Sistem Informasi Hukum";
+                font-size: 8pt;
+                color: #94a3b8;
+                font-family: 'Segoe UI', Tahoma, sans-serif;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cover-page {
+            page-break-after: always;
+            height: 96vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            box-sizing: border-box;
+            border: 3px double #0f172a;
+            position: relative;
+        }
+
+        .cover-header {
+            margin-top: 20px;
+        }
+
+        .cover-header h3 {
+            font-size: 13pt;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #0f172a;
+            margin: 0 0 5px 0;
+        }
+
+        .cover-header h4 {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .cover-icon {
+            margin: 30px auto;
+            width: 90px;
+            height: 90px;
+            background: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #c9a84c;
+            box-shadow: 0 4px 15px rgba(15,23,42,0.15);
+        }
+
+        .cover-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: #c9a84c;
+        }
+
+        .cover-title {
+            margin: 20px 0;
+        }
+
+        .cover-title h1 {
+            font-size: 18pt;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.4;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+        }
+
+        .cover-title .subtitle {
+            font-size: 11pt;
+            font-weight: 500;
+            color: #c9a84c;
+            background: #0f172a;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .cover-meta {
+            margin: 30px auto;
+            text-align: left;
+            width: 75%;
+            background: #f8fafc;
+            padding: 16px 24px;
+            border-radius: 8px;
+            border-left: 4px solid #c9a84c;
+            font-size: 10pt;
+        }
+
+        .cover-meta table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cover-meta td {
+            padding: 4px 6px;
+        }
+
+        .cover-footer {
+            margin-bottom: 20px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+        }
+
+        .cover-footer p {
+            margin: 3px 0;
+            font-size: 10pt;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Content Styling */
+        h1, h2, h3, h4 {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        h1.chapter-title {
+            font-size: 15pt;
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            page-break-before: always;
+        }
+
+        h1.chapter-title:first-of-type {
+            page-break-before: avoid;
+        }
+
+        h2.section-title {
+            font-size: 12pt;
+            color: #0f172a;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid #c9a84c;
+            padding-left: 10px;
+        }
+
+        h3.subsection-title {
+            font-size: 11pt;
+            color: #334155;
+            margin-top: 14px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            text-align: justify;
+            margin: 0 0 10px 0;
+            text-indent: 2em;
+        }
+
+        p.no-indent {
+            text-indent: 0;
+        }
+
+        ul, ol {
+            margin: 0 0 12px 0;
+            padding-left: 28px;
+        }
+
+        li {
+            margin-bottom: 5px;
+            text-align: justify;
+        }
+
+        /* Tables */
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 18px 0;
+            font-size: 9.5pt;
+            page-break-inside: avoid;
+        }
+
+        table.data-table th, table.data-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 10px;
+            vertical-align: top;
+        }
+
+        table.data-table th {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: left;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        table.data-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 8pt;
+            font-weight: 600;
+        }
+
+        .badge-success { background: #dcfce7; color: #15803d; }
+        .badge-warning { background: #fef3c7; color: #b45309; }
+        .badge-navy { background: #0f172a; color: #c9a84c; }
+
+        /* Code & Pre */
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 12px 14px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 8.5pt;
+            line-height: 1.45;
+            overflow-x: auto;
+            border-left: 4px solid #c9a84c;
+            margin: 12px 0 16px 0;
+            page-break-inside: avoid;
+        }
+
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: #e2e8f0;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 9pt;
+            color: #0f172a;
+        }
+
+        /* Callouts / Highlights */
+        .callout {
+            background: #f8fafc;
+            border-left: 4px solid #0f172a;
+            border-right: 1px solid #e2e8f0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            page-break-inside: avoid;
+        }
+
+        .callout-gold {
+            background: #fefce8;
+            border-left-color: #c9a84c;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+            font-size: 10pt;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dotted #cbd5e1;
+            font-size: 10pt;
+        }
+
+        .toc-item.level-1 {
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 8px;
+        }
+
+        .toc-item.level-2 {
+            padding-left: 18px;
+            color: #334155;
+        }
+
+        .signature-box {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            page-break-inside: avoid;
+        }
+
+        .signature-item {
+            text-align: center;
+            width: 45%;
+        }
+
+        .signature-space {
+            height: 70px;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .cover-page { height: 100%; border: 3px double #0f172a; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HALAMAN COVER LAPORAN                                         -->
+    <!-- ============================================================ -->
+    <div class="cover-page">
+        <div class="cover-header">
+            <h3>LAPORAN TUGAS PROYEK PENGEMBANGAN PERANGKAT LUNAK</h3>
+            <h4>MATA KULIAH TUGAS AKHIR / REKAYASA PERANGKAT LUNAK</h4>
+        </div>
+
+        <div>
+            <div class="cover-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/>
+                </svg>
+            </div>
+
+            <div class="cover-title">
+                <h1>SISTEM INFORMASI LAYANAN DAN KONSULTASI HUKUM BERBASIS WEBSITE</h1>
+                <div class="subtitle">Studi Kasus: Kantor Hukum Ahmad Handoko Law Office Bandar Lampung</div>
+            </div>
+        </div>
+
+        <div class="cover-meta">
+            <table>
+                <tr>
+                    <td style="width: 32%; font-weight: 600;">Topik Proyek</td>
+                    <td style="width: 3%;">:</td>
+                    <td>Sistem Informasi Manajemen & Pelayanan Hukum Multi-Role</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Teknologi Utama</td>
+                    <td>:</td>
+                    <td>Laravel 12, PHP 8.2, MySQL (3NF), QRIS Gateway, Bootstrap 5</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Repository GitHub</td>
+                    <td>:</td>
+                    <td><code>Project_skripsi_2</code></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Tahun Akademik</td>
+                    <td>:</td>
+                    <td>2026 / Genap</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">Status Verifikasi</td>
+                    <td>:</td>
+                    <td><span class="badge badge-success">100% SELESAI & TERUJI</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="cover-footer">
+            <p>KANTOR HUKUM AHMAD HANDOKO LAW OFFICE</p>
+            <p style="font-weight: 500; font-size: 9pt; color: #64748b;">KOTA BANDAR LAMPUNG &bull; PROVINSI LAMPUNG &bull; TAHUN 2026</p>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- LEMBAR PENGESAHAN & PERNYATAAN                               -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">LEMBAR PERNYATAAN DAN PENGESAHAN</h1>
+
+    <p class="no-indent" style="margin-top: 15px;">
+        Dengan ini dinyatakan bahwa laporan tugas proyek dan seluruh artefak kode program aplikasi yang dikumpulkan pada repository GitHub ini merupakan karya pengembangan mandiri untuk memenuhi luaran mata kuliah / skripsi dengan spesifikasi teknis sebagai berikut:
+    </p>
+
+    <div class="callout callout-gold">
+        <div class="callout-title">Spesifikasi Identitas Proyek:</div>
+        <table style="width:100%; font-size:9.5pt; border-collapse:collapse;">
+            <tr><td style="width:30%; padding:3px 0;"><strong>Judul Proyek</strong></td><td>: Sistem Informasi Layanan dan Konsultasi Hukum Berbasis Website pada Kantor Ahmad Handoko Law Office Bandar Lampung</td></tr>
+            <tr><td style="padding:3px 0;"><strong>Arsitektur</strong></td><td>: Model-View-Controller (MVC) Framework Laravel 12</td></tr>
+            <tr><td style="padding:3px 0;"><strong>Normalisasi Basis Data</strong></td><td>: Memenuhi 3NF (Third Normal Form) Lengkap Tanpa Redundansi</td></tr>
+            <tr><td style="padding:3px 0;"><strong>Integrasi Pembayaran</strong></td><td>: QRIS Dinamis Standar EMVCo (Injeksi Nominal Tag 54 + CRC16-CCITT)</td></tr>
+            <tr><td style="padding:3px 0;"><strong>Modul Komunikasi</strong></td><td>: Real-time Consultation Chat berbasis Lightweight Polling (AJAX)</td></tr>
+        </table>
+    </div>
+
+    <p>
+        Seluruh implementasi fitur telah diuji menggunakan metodologi <em>Black Box Testing</em> dan diverifikasi beroperasi penuh pada lingkungan lokal XAMPP (Apache & MySQL) serta siap diinspeksi melalui berkas migrasi basis data, seeder, dan repositori kode sumber.
+    </p>
+
+    <div class="signature-box">
+        <div class="signature-item">
+            <p style="margin:0; font-size:9.5pt;">Mengetahui,<br><strong>Dosen Pengampu / Pembimbing</strong></p>
+            <div class="signature-space"></div>
+            <p style="margin:0; font-weight:700; text-decoration:underline;">(___________________________)</p>
+            <p style="margin:0; font-size:8.5pt; color:#64748b;">NIP / NIDN.</p>
+        </div>
+        <div class="signature-item">
+            <p style="margin:0; font-size:9.5pt;">Bandar Lampung, November 2026<br><strong>Mahasiswa Pengembang</strong></p>
+            <div class="signature-space"></div>
+            <p style="margin:0; font-weight:700; text-decoration:underline;">( Mahasiswa Pengembang )</p>
+            <p style="margin:0; font-size:8.5pt; color:#64748b;">NPM / NIM Mahasiswa</p>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- DAFTAR ISI                                                   -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">DAFTAR ISI</h1>
+
+    <div class="toc-list">
+        <div class="toc-item level-1"><span>BAB I. PENDAHULUAN</span><span>1</span></div>
+        <div class="toc-item level-2"><span>1.1 Latar Belakang Masalah</span><span>1</span></div>
+        <div class="toc-item level-2"><span>1.2 Rumusan Masalah</span><span>1</span></div>
+        <div class="toc-item level-2"><span>1.3 Tujuan dan Manfaat Sistem</span><span>2</span></div>
+        <div class="toc-item level-2"><span>1.4 Batasan Ruang Lingkup Proyek</span><span>2</span></div>
+
+        <div class="toc-item level-1"><span>BAB II. TINJAUAN PUSTAKA DAN LANDASAN TEORI</span><span>3</span></div>
+        <div class="toc-item level-2"><span>2.1 Framework Laravel 12 dan PHP 8.2</span><span>3</span></div>
+        <div class="toc-item level-2"><span>2.2 Konsep Relasional dan Normalisasi Basis Data 3NF</span><span>3</span></div>
+        <div class="toc-item level-2"><span>2.3 Mekanisme Pembayaran QRIS Dinamis Standar EMVCo</span><span>4</span></div>
+        <div class="toc-item level-2"><span>2.4 Protokol Komunikasi Asinkron AJAX Polling</span><span>4</span></div>
+
+        <div class="toc-item level-1"><span>BAB III. ANALISIS DAN PERANCANGAN SISTEM</span><span>5</span></div>
+        <div class="toc-item level-2"><span>3.1 Analisis Aktor dan Hak Akses (RBAC)</span><span>5</span></div>
+        <div class="toc-item level-2"><span>3.2 Kebutuhan Fungsional Sistem</span><span>5</span></div>
+        <div class="toc-item level-2"><span>3.3 Diagram Pemodelan UML (Use Case & Activity)</span><span>6</span></div>
+
+        <div class="toc-item level-1"><span>BAB IV. PERANCANGAN BASIS DATA (SKEMA 3NF)</span><span>7</span></div>
+        <div class="toc-item level-2"><span>4.1 Struktur Skema Basis Data (7 Tabel + 1 Pengaturan)</span><span>7</span></div>
+        <div class="toc-item level-2"><span>4.2 Kamus Data dan Relasi Foreign Key</span><span>8</span></div>
+
+        <div class="toc-item level-1"><span>BAB V. IMPLEMENTASI SISTEM DAN FITUR UNGGULAN</span><span>9</span></div>
+        <div class="toc-item level-2"><span>5.1 Implementasi Autentikasi dan Role Middleware</span><span>9</span></div>
+        <div class="toc-item level-2"><span>5.2 Alur Layanan Konsultasi dan Penugasan Advokat</span><span>9</span></div>
+        <div class="toc-item level-2"><span>5.3 Inovasi Engine QRIS Dinamis Mandiri (Tag 54 & CRC16)</span><span>10</span></div>
+        <div class="toc-item level-2"><span>5.4 Fitur Konsultasi Daring (Live Chat AJAX)</span><span>11</span></div>
+        <div class="toc-item level-2"><span>5.5 Modul Cetak Laporan Rekapitulasi</span><span>11</span></div>
+
+        <div class="toc-item level-1"><span>BAB VI. HASIL PENGUJIAN SISTEM (BLACK BOX TESTING)</span><span>12</span></div>
+        <div class="toc-item level-2"><span>6.1 Matriks Skenario Uji Black Box</span><span>12</span></div>
+        <div class="toc-item level-2"><span>6.2 Evaluasi Hasil Pengujian</span><span>13</span></div>
+
+        <div class="toc-item level-1"><span>BAB VII. PANDUAN DEPLOYMENT DAN CARA MENJALANKAN</span><span>14</span></div>
+        <div class="toc-item level-2"><span>7.1 Kebutuhan Lingkungan Lokal</span><span>14</span></div>
+        <div class="toc-item level-2"><span>7.2 Langkah Instalasi Repositori GitHub</span><span>14</span></div>
+        <div class="toc-item level-2"><span>7.3 Fitur Eksekusi Cepat 1-Klik (`ahlo`)</span><span>15</span></div>
+
+        <div class="toc-item level-1"><span>BAB VIII. KESIMPULAN DAN SARAN</span><span>16</span></div>
+        <div class="toc-item level-2"><span>8.1 Kesimpulan</span><span>16</span></div>
+        <div class="toc-item level-2"><span>8.2 Saran Pengembangan Selanjutnya</span><span>16</span></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- BAB I: PENDAHULUAN                                           -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB I. PENDAHULUAN</h1>
+
+    <h2 class="section-title">1.1 Latar Belakang Masalah</h2>
+    <p>
+        Kantor Hukum <em>Ahmad Handoko Law Office</em> yang berkedudukan di Kota Bandar Lampung merupakan institusi penyedia jasa advokasi, konsultasi, dan pendampingan hukum baik untuk perkara litigasi (pidana, perdata, tata usaha negara) maupun non-litigasi (korporasi dan perbankan). Seiring bertambahnya volume pencari keadilan yang membutuhkan konsultasi hukum profesional, proses operasional konvensional yang mengandalkan formulir kertas fisik, pencatatan jadwal manual, dan konfirmasi transfer via perpesanan instan personal menghadapi beberapa hambatan signifikan.
+    </p>
+    <p>
+        Hambatan tersebut mencakup: (1) risiko hilangnya dokumen bukti pendukung perkara yang diserahkan pemohon, (2) keterlambatan sekretaris dalam mendistribusikan berkas kepada advokat yang relevan dengan bidang perkaranya, (3) ketiadaan linimasa yang dapat dipantau langsung oleh klien terkait perkembangan perkara hukumnya, serta (4) pencatatan tagihan biaya administrasi konsultasi yang belum tersentralisasi dan rentan terhadap ketidakcocokan audit keuangan.
+    </p>
+    <p>
+        Oleh karena itu, diperlukan perancangan dan pembangunan <strong>Sistem Informasi Layanan dan Konsultasi Hukum Berbasis Website</strong> yang mampu mengintegrasikan seluruh tahapan layanan secara digital, transparan, dan terstruktur dengan membagi peran pengguna secara tegas antara Klien, Sekretaris (Admin), dan Pengacara.
+    </p>
+
+    <h2 class="section-title">1.2 Rumusan Masalah</h2>
+    <p class="no-indent">Berdasarkan latar belakang di atas, rumusan masalah dalam proyek ini adalah:</p>
+    <ol>
+        <li>Bagaimana merancang sistem informasi konsultasi hukum berbasis website yang memfasilitasi pengajuan perkara, penugasan advokat, dan penjadwalan temu secara terpadu?</li>
+        <li>Bagaimana menerapkan struktur basis data relasional yang memenuhi kaidah normalisasi <em>Third Normal Form</em> (3NF) guna menjamin integritas data dan mencegah redundansi?</li>
+        <li>Bagaimana mengimplementasikan fitur pembayaran modern menggunakan <em>Quick Response Code Indonesian Standard</em> (QRIS) Dinamis dengan kalkulasi nominal otomatis yang kompatibel dengan seluruh dompet digital dan mobile banking nasional?</li>
+        <li>Bagaimana menyediakan saluran komunikasi konsultasi daring (<em>live chat</em>) yang ringan, stabil, dan dapat berjalan pada server lokal tanpa membutuhkan infrastruktur WebSocket terpisah?</li>
+    </ol>
+
+    <h2 class="section-title">1.3 Tujuan dan Manfaat Sistem</h2>
+    <p class="no-indent"><strong>Tujuan Proyek:</strong></p>
+    <ul>
+        <li>Membangun aplikasi website berbasis framework Laravel 12 dengan arsitektur MVC yang modular dan andal.</li>
+        <li>Menyediakan antarmuka khusus untuk 3 hak akses pengguna: Klien, Sekretaris Kantor Hukum, dan Advokat Pembimbing.</li>
+        <li>Mengotomatisasi pembuatan nomor registrasi perkara berkodefikasi resmi (contoh: <code>REG/2026/NOV/0006</code>).</li>
+        <li>Menyediakan fasilitas pembayaran QRIS dinamis dan verifikasi bukti bayar yang transparan.</li>
+        <li>Menghasilkan laporan rekapitulasi data perkara dan laporan keuangan yang siap dicetak maupun diekspor ke PDF.</li>
+    </ul>
+
+    <h2 class="section-title">1.4 Batasan Ruang Lingkup Proyek</h2>
+    <p class="no-indent">Ruang lingkup dan batasan dalam pengerjaan sistem ini adalah:</p>
+    <ul>
+        <li>Lingkungan operasional: Server lokal Apache dan MySQL (XAMPP) dengan PHP versi 8.2.</li>
+        <li>Pengguna sistem dibatasi pada 3 peran utama (Role): Klien, Sekretaris, dan Pengacara.</li>
+        <li>Kategori perkara mencakup: Hukum Pidana, Hukum Perdata, Tata Usaha Negara (TUN), Hukum Perbankan & Korporasi, serta Hukum Ketenagakerjaan.</li>
+        <li>Komunikasi daring menggunakan protokol HTTP Fetch Polling berkala yang dioptimasi untuk efisiensi beban server lokal.</li>
+    </ul>
+
+    <!-- ============================================================ -->
+    <!-- BAB II: LANDASAN TEORI                                       -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB II. TINJAUAN PUSTAKA DAN LANDASAN TEORI</h1>
+
+    <h2 class="section-title">2.1 Framework Laravel 12 dan PHP 8.2</h2>
+    <p>
+        Laravel merupakan framework aplikasi web berbasis PHP dengan sintaks yang elegan dan ekspresif. Laravel menerapkan pola arsitektur <em>Model-View-Controller</em> (MVC) yang memisahkan antara logika pengolahan data (Model), antarmuka presentasi pengguna (View/Blade), dan pengendali alur logika bisnis (Controller). Versi Laravel 12 yang dipadukan dengan PHP 8.2 menghadirkan peningkatan performa JIT (<em>Just-In-Time Compiler</em>), fitur <em>type safety</em> yang kuat, manajemen dependensi modern melalui Composer, serta keamanan bawaan terhadap serangan <em>SQL Injection</em>, <em>Cross-Site Request Forgery</em> (CSRF), dan <em>Cross-Site Scripting</em> (XSS).
+    </p>
+
+    <h2 class="section-title">2.2 Konsep Relasional dan Normalisasi Basis Data 3NF</h2>
+    <p>
+        Normalisasi adalah teknik perancangan basis data relasional untuk meminimalkan redundansi data dan mencegah terjadinya anomali penyisipan (<em>insertion anomaly</em>), penghapusan (<em>deletion anomaly</em>), serta pembaruan (<em>update anomaly</em>). Tahapan normalisasi pada sistem ini meliputi:
+    </p>
+    <ul>
+        <li><strong>First Normal Form (1NF):</strong> Setiap kolom dalam tabel memiliki nilai atomik (tidak dapat dibagi lagi) dan tidak memiliki grup perulangan (<em>repeating groups</em>).</li>
+        <li><strong>Second Normal Form (2NF):</strong> Memenuhi 1NF dan seluruh atribut non-kunci bergantung secara fungsional penuh (<em>fully functional dependency</em>) pada <em>Primary Key</em>.</li>
+        <li><strong>Third Normal Form (3NF):</strong> Memenuhi 2NF dan tidak memiliki ketergantungan transitif (<em>transitive dependency</em>), di mana atribut non-kunci tidak boleh bergantung pada atribut non-kunci lainnya. Sebagai contoh, tabel <code>pembayaran</code> hanya merujuk pada <code>formulir_id</code> tanpa menyimpan ulang <code>user_id</code> atau <code>nama_klien</code> secara redundan.</li>
+    </ul>
+
+    <h2 class="section-title">2.3 Mekanisme Pembayaran QRIS Dinamis Standar EMVCo</h2>
+    <p>
+        QRIS (<em>Quick Response Code Indonesian Standard</em>) yang distandardisasi oleh Bank Indonesia dan ASPI mengadopsi spesifikasi internasional <strong>EMVCo QR Code Specification for Payment Systems</strong>. String QRIS tersusun atas pasangan Tag-Length-Value (TLV):
+    </p>
+    <ul>
+        <li><strong>Tag 01 (Point of Initiation Method):</strong> Nilai <code>11</code> menandakan QRIS statis (nominal ditentukan pembayar), sedangkan nilai <code>12</code> menandakan QRIS dinamis (nominal tunggal terikat sistem).</li>
+        <li><strong>Tag 54 (Transaction Amount):</strong> Menampung nilai nominal tagihan yang wajib dibayarkan oleh pembeli/klien.</li>
+        <li><strong>Tag 58 (Country Code):</strong> Berisi kode negara <code>ID</code>.</li>
+        <li><strong>Tag 63 (Cyclic Redundancy Check):</strong> Mengandung 4 karakter heksadesimal hasil kalkulasi algoritma <strong>CRC16-CCITT</strong> (polinomial <code>0x1021</code> dengan inisialisasi <code>0xFFFF</code>) untuk memvalidasi keaslian dan integritas muatan QR.</li>
+    </ul>
+
+    <!-- ============================================================ -->
+    <!-- BAB III: ANALISIS DAN PERANCANGAN SISTEM                    -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB III. ANALISIS DAN PERANCANGAN SISTEM</h1>
+
+    <h2 class="section-title">3.1 Analisis Aktor dan Hak Akses (Role-Based Access Control)</h2>
+    <p>
+        Sistem mengimplementasikan pengamanan rute berbasis peran (RBAC) menggunakan custom middleware <code>CheckRole</code>. Tiga aktor yang terlibat dalam sistem adalah:
+    </p>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Peran (Aktor)</th>
+                <th style="width: 45%;">Tanggung Jawab & Wewenang</th>
+                <th style="width: 35%;">Akses Rute Utama</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Klien (Pemohon)</strong></td>
+                <td>Mendaftar akun, mengajukan konsultasi perkara, mengunggah bukti awal, melihat jadwal temu, scan QRIS dinamis, upload bukti transfer, dan chat konsultasi online.</td>
+                <td><code>/klien/dashboard</code><br><code>/klien/ajukan-konsultasi</code><br><code>/klien/kasus/{id}</code></td>
+            </tr>
+            <tr>
+                <td><strong>Sekretaris (Admin)</strong></td>
+                <td>Memverifikasi berkas permohonan masuk, menugaskan advokat pembimbing, menentukan jadwal temu, menerbitkan tagihan, verifikasi bukti bayar lunas, dan mencetak laporan.</td>
+                <td><code>/admin/dashboard</code><br><code>/admin/perkara</code><br><code>/admin/pembayaran</code><br><code>/admin/laporan/*</code></td>
+            </tr>
+            <tr>
+                <td><strong>Pengacara (Advokat)</strong></td>
+                <td>Menerima disposisi perkara, memperbarui tahapan linimasa progres kasus, mengunggah berkas kontrak kesepakatan / surat kuasa, update status sidang, dan melayani konsultasi chat.</td>
+                <td><code>/pengacara/dashboard</code><br><code>/pengacara/perkara/{id}</code><br><code>/chat/{id}</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="section-title">3.2 Kebutuhan Fungsional Sistem</h2>
+    <ul>
+        <li><strong>F-01 (Manajemen Autentikasi):</strong> Sistem mendukung registrasi klien mandiri, login multi-role dengan validasi username/password terenkripsi Bcrypt, serta proteksi sesi.</li>
+        <li><strong>F-02 (Pengajuan Konsultasi Perkara):</strong> Klien dapat mengisi biodata, kategori kasus, uraian duduk perkara minimal 20 karakter, serta lampiran berkas bukti pendukung awal (JPG/PNG/PDF).</li>
+        <li><strong>F-03 (Penomoran Otomatis):</strong> Sistem secara otomatis menghasilkan nomor permohonan unik dengan format <code>REG/TAHUN/BULAN/NOMOR_URUT_4_DIGIT</code>.</li>
+        <li><strong>F-04 (Disposisi dan Verifikasi):</strong> Sekretaris dapat menyetujui/menolak permohonan dan menugaskan advokat spesialis sesuai bidang hukum perkara yang diajukan.</li>
+        <li><strong>F-05 (Penjadwalan Konsultasi):</strong> Sekretaris dapat menetapkan tanggal, jam, dan lokasi/tautan ruang pertemuan temu konsultasi.</li>
+        <li><strong>F-06 (Engine Pembayaran QRIS Dinamis):</strong> Sistem menghasilkan QRIS Dinamis berstandar EMVCo dengan nominal terikat otomatis, menyediakan tombol salin string dan unduh gambar QR.</li>
+        <li><strong>F-07 (Verifikasi Pembayaran):</strong> Klien mengunggah bukti transfer, sekretaris memvalidasi dan mengubah status pembayaran menjadi LUNAS.</li>
+        <li><strong>F-08 (Konsultasi Chat Asinkron):</strong> Ruang percakapan dua arah antara Klien dan Advokat per nomor perkara dengan pencatatan status baca (<code>is_read</code>).</li>
+        <li><strong>F-09 (Pelaporan dan Cetak):</strong> Rekapitulasi laporan data perkara dan laporan keuangan yang siap cetak ramah kertas (<em>print-friendly</em>).</li>
+    </ul>
+
+    <!-- ============================================================ -->
+    <!-- BAB IV: PERANCANGAN BASIS DATA (3NF)                         -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB IV. PERANCANGAN BASIS DATA (SKEMA 3NF)</h1>
+
+    <h2 class="section-title">4.1 Struktur Skema Basis Data Relasional</h2>
+    <p>
+        Basis data <code>db_ahmad_handoko_law</code> dirancang menggunakan mesin MySQL InnoDB dengan pengawasan integritas referensial penuh (<em>foreign key constraints</em>). Relasi antar entitas disusun sedemikian rupa sehingga mencapai normalisasi bentuk ketiga (3NF).
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 25%;">Nama Tabel</th>
+                <th style="width: 45%;">Kolom & Tipe Data</th>
+                <th style="width: 30%;">Keterangan Relasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>user_roles</strong></td>
+                <td><code>id (PK)</code>, <code>nama_role (unique)</code>, <code>deskripsi</code>, <code>timestamps</code></td>
+                <td>Menyimpan master peran (klien, sekretaris, pengacara)</td>
+            </tr>
+            <tr>
+                <td><strong>users</strong></td>
+                <td><code>id (PK)</code>, <code>role_id (FK)</code>, <code>nama_lengkap</code>, <code>username (unique)</code>, <code>email</code>, <code>password</code>, <code>no_hp</code>, <code>alamat</code>, <code>foto</code>, <code>is_active</code>, <code>timestamps</code></td>
+                <td>Relasi N:1 ke <code>user_roles</code></td>
+            </tr>
+            <tr>
+                <td><strong>kategori_kasus</strong></td>
+                <td><code>id (PK)</code>, <code>nama_kategori (unique)</code>, <code>deskripsi</code>, <code>timestamps</code></td>
+                <td>Master kategori perkara hukum</td>
+            </tr>
+            <tr>
+                <td><strong>formulir_konsultasi</strong></td>
+                <td><code>id (PK)</code>, <code>no_permohonan (unique)</code>, <code>klien_id (FK users)</code>, <code>pengacara_id (FK users, nullable)</code>, <code>kategori_id (FK kategori_kasus)</code>, <code>tempat_lahir</code>, <code>tgl_lahir</code>, <code>jenis_kelamin</code>, <code>agama</code>, <code>pekerjaan</code>, <code>uraian_singkat_perkara</code>, <code>bukti_awal</code>, <code>status_verifikasi</code>, <code>status_kasus</code>, <code>status_jadwal_temu</code>, <code>tgl_waktu_jadwal_temu</code>, <code>catatan_jadwal_temu</code>, <code>timestamps</code></td>
+                <td>Entitas pusat transaksi layanan konsultasi perkara hukum</td>
+            </tr>
+            <tr>
+                <td><strong>kontrak_kesepakatan</strong></td>
+                <td><code>id (PK)</code>, <code>formulir_id (FK formulir)</code>, <code>berkas_kontrak</code>, <code>keterangan</code>, <code>status_sidang</code>, <code>timestamps</code></td>
+                <td>Menyimpan dokumen surat kuasa & tahapan sidang perkara</td>
+            </tr>
+            <tr>
+                <td><strong>pembayaran</strong></td>
+                <td><code>id (PK)</code>, <code>formulir_id (FK formulir)</code>, <code>jumlah_tagihan (DECIMAL 15,2)</code>, <code>bukti_bayar</code>, <code>keterangan</code>, <code>status</code>, <code>timestamps</code></td>
+                <td>3NF murni: tanpa duplikasi user_id (ditelusuri via formulir)</td>
+            </tr>
+            <tr>
+                <td><strong>pesan_chat</strong></td>
+                <td><code>id (PK)</code>, <code>formulir_id (FK formulir)</code>, <code>pengirim_id (FK users)</code>, <code>pesan</code>, <code>is_read</code>, <code>timestamps</code></td>
+                <td>Pesan konsultasi interaktif terasosiasi per kasus perkara</td>
+            </tr>
+            <tr>
+                <td><strong>payment_settings</strong></td>
+                <td><code>id (PK)</code>, <code>key (unique)</code>, <code>value</code>, <code>label</code>, <code>timestamps</code></td>
+                <td>Konfigurasi dinamis string QRIS, merchant name, dan status</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ============================================================ -->
+    <!-- BAB V: IMPLEMENTASI DAN FITUR UNGGULAN                      -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB V. IMPLEMENTASI SISTEM DAN FITUR UNGGULAN</h1>
+
+    <h2 class="section-title">5.1 Implementasi Autentikasi dan Role Middleware</h2>
+    <p>
+        Autentikasi diimplementasikan melalui controller <code>AuthController</code> dengan proteksi password <code>Bcrypt</code>. Akses setiap modul dijaga oleh middleware <code>CheckRole</code> yang memeriksa role pengguna terautentikasi sebelum merender halaman. Jika pengguna mencoba mengakses rute yang bukan haknya, sistem secara otomatis mengembalikan respon <em>403 Forbidden</em> atau mengarahkan ke dashboard yang sesuai.
+    </p>
+
+    <h2 class="section-title">5.2 Inovasi Engine QRIS Dinamis Mandiri</h2>
+    <p>
+        Salah satu inovasi teknis utama pada proyek ini adalah modul generator QRIS Dinamis mandiri pada model <code>PaymentSetting</code>. Alih-alih bergantung penuh pada layanan API pihak ketiga yang rentan <em>downtime</em>, sistem memproses string QRIS statis (seperti DANA Bisnis, GoPay, OVO, atau rekening bank merchant) secara langsung di server:
+    </p>
+    <ul>
+        <li>Mengubah Point of Initiation Method dari statis (<code>010211</code>) menjadi dinamis (<code>010212</code>).</li>
+        <li>Menyisipkan Tag <code>54</code> (Transaction Amount) sesuai nominal tagihan yang diterbitkan oleh sekretaris.</li>
+        <li>Menghitung ulang checksum <strong>CRC16-CCITT</strong> berbasis algoritma polinomial <code>0x1021</code> dan inisialisasi <code>0xFFFF</code>.</li>
+        <li>Merender QR Code melalui sistem <em>Multi-tier Fallback</em> (QRServer CDN, Google Charts API, QuickChart, dan client-side fallback).</li>
+    </ul>
+
+    <div class="callout">
+        <div class="callout-title">Implementasi Algoritma Kalkulasi CRC16-CCITT (PHP):</div>
+<pre>
+public static function crc16Ccitt(string $data): int
+{
+    $crc = 0xFFFF;
+    $len = strlen($data);
+    for ($i = 0; $i < $len; $i++) {
+        $crc ^= (ord($data[$i]) << 8);
+        for ($j = 0; $j < 8; $j++) {
+            if ($crc & 0x8000) {
+                $crc = (($crc << 1) ^ 0x1021) & 0xFFFF;
+            } else {
+                $crc = ($crc << 1) & 0xFFFF;
+            }
+        }
+    }
+    return $crc;
+}
+</pre>
+    </div>
+
+    <h2 class="section-title">5.3 Fitur Konsultasi Daring (Live Chat Polling)</h2>
+    <p>
+        Fitur chat interaktif dibangun menggunakan kombinasi controller <code>ChatController</code> dan AJAX Fetch Polling setiap 3 detik. Pendekatan ini dipilih secara strategis karena sangat ringan, tidak membutuhkan konfigurasi WebSocket terpisah di lingkungan lokal XAMPP Windows, serta menjamin kompatibilitas 100% pada saat pengujian maupun demonstrasi sidang.
+    </p>
+
+    <!-- ============================================================ -->
+    <!-- BAB VI: PENGUJIAN SISTEM (BLACK BOX)                        -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB VI. HASIL PENGUJIAN SISTEM (BLACK BOX TESTING)</h1>
+
+    <h2 class="section-title">6.1 Matriks Skenario Uji Black Box</h2>
+    <p>
+        Pengujian fungsionalitas sistem dilakukan menggunakan metode <em>Black Box Testing</em> untuk memverifikasi kesesuaian antara masukan (<em>input</em>) dan keluaran (<em>output</em>) yang diharapkan tanpa melihat kode internal:
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 25%;">Komponen / Fitur</th>
+                <th style="width: 35%;">Skenario & Masukan</th>
+                <th style="width: 23%;">Hasil yang Diharapkan</th>
+                <th style="width: 12%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Registrasi Klien</td>
+                <td>Mengisi form daftar dengan data valid</td>
+                <td>Akun terdaftar, redirect login</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Login Multi-Role</td>
+                <td>Login admin, pengacara, dan klien</td>
+                <td>Redirect ke dashboard masing-masing</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Proteksi Middleware</td>
+                <td>Klien membuka URL rute <code>/admin/perkara</code></td>
+                <td>Akses ditolak (403 Forbidden)</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Pengajuan Perkara</td>
+                <td>Input kategori, uraian & upload bukti awal</td>
+                <td>Nomor REG terbit otomatis, status pending</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Verifikasi Permohonan</td>
+                <td>Admin menyetujui permohonan</td>
+                <td>Status berubah menjadi 'disetujui'</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Penugasan Advokat</td>
+                <td>Admin memilih pengacara pembimbing</td>
+                <td>Perkara tampil di dashboard pengacara</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Penjadwalan Temu</td>
+                <td>Admin menetapkan tgl, jam, dan lokasi temu</td>
+                <td>Jadwal muncul di detail kasus klien</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Penerbitan Tagihan</td>
+                <td>Admin input biaya misal Rp 500.000</td>
+                <td>Record tagihan terbuat, status belum_bayar</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Generator QRIS Dinamis</td>
+                <td>Klien membuka halaman tagihan perkara</td>
+                <td>QR Code muncul dengan nominal Rp 500.000</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Upload Bukti Bayar</td>
+                <td>Klien mengunggah screenshot transfer</td>
+                <td>Status berubah 'menunggu_verifikasi'</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Konfirmasi Lunas</td>
+                <td>Admin klik 'Konfirmasi Pembayaran Lunas'</td>
+                <td>Status bayar menjadi 'LUNAS'</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Upload Kontrak Sidang</td>
+                <td>Pengacara unggah PDF berkas kuasa/sidang</td>
+                <td>Klien dapat mengunduh berkas kontrak</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Chat Konsultasi</td>
+                <td>Klien & Advokat bertukar pesan daring</td>
+                <td>Pesan terkirim & terbaca real-time</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Cetak Laporan Perkara</td>
+                <td>Admin membuka menu laporan perkara</td>
+                <td>Format cetak tabel perkara terstruktur</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Cetak Laporan Keuangan</td>
+                <td>Admin membuka menu laporan pembayaran</td>
+                <td>Rekapitulasi total pendapatan terakumulasi</td>
+                <td><span class="badge badge-success">VALID</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="section-title">6.2 Evaluasi Hasil Pengujian</h2>
+    <p>
+        Berdasarkan hasil pengujian 15 skenario utama pada matriks Black Box Testing di atas, seluruh fitur memperoleh status <strong>VALID (100% Berhasil)</strong>. Tidak ditemukan <em>fatal error</em>, <em>deadlock</em>, maupun anomali data pada alur bisnis utama sistem.
+    </p>
+
+    <!-- ============================================================ -->
+    <!-- BAB VII: PANDUAN INSTALASI                                   -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB VII. PANDUAN DEPLOYMENT DAN CARA MENJALANKAN</h1>
+
+    <h2 class="section-title">7.1 Kebutuhan Lingkungan Lokal</h2>
+    <ul>
+        <li>Sistem Operasi: Microsoft Windows 10/11</li>
+        <li>Paket Web Server: XAMPP for Windows (Apache 2.4, MySQL 8.0+)</li>
+        <li>Penerjemah Bahasa: PHP versi 8.2.12 (terpasang di <code>C:\xampp\php\php.exe</code>)</li>
+        <li>Manajer Paket: Composer 2.x</li>
+        <li>Browser Modern: Google Chrome, Microsoft Edge, atau Mozilla Firefox</li>
+    </ul>
+
+    <h2 class="section-title">7.2 Langkah Instalasi Repositori GitHub</h2>
+    <p class="no-indent">Bagi dosen penguji atau rekan pengembang yang melakukan clone repositori dari GitHub:</p>
+<pre>
+# 1. Clone repositori dari GitHub
+git clone https://github.com/[username]/Project_skripsi_2.git C:\xampp\htdocs\Project_skripsi_2
+
+# 2. Masuk ke direktori proyek
+cd C:\xampp\htdocs\Project_skripsi_2
+
+# 3. Salin konfigurasi environment
+copy .env.example .env
+
+# 4. Pasang dependensi PHP (jika belum ada folder vendor)
+composer install
+
+# 5. Generate Application Encryption Key
+php artisan key:generate
+
+# 6. Buat basis data dan jalankan migrasi beserta data awal (Seeder)
+php artisan migrate:fresh --seed
+</pre>
+
+    <h2 class="section-title">7.3 Fitur Eksekusi Cepat 1-Klik (`ahlo`)</h2>
+    <p>
+        Untuk mempermudah demonstrasi di hadapan dosen penguji, sistem telah dilengkapi dengan perintah eksekusi cepat. Cukup buka <strong>Command Prompt (CMD)</strong> di Windows, lalu ketik:
+    </p>
+<pre>
+ahlo
+</pre>
+    <p>
+        Skrip otomatis tersebut akan: (1) Menjalankan service MySQL XAMPP di background, (2) Menjalankan service Apache HTTPD, (3) Membuka web browser ke alamat <code>http://127.0.0.1:8000</code>, dan (4) Menjalankan web server internal Laravel.
+    </p>
+
+    <!-- ============================================================ -->
+    <!-- BAB VIII: KESIMPULAN DAN SARAN                               -->
+    <!-- ============================================================ -->
+    <h1 class="chapter-title">BAB VIII. KESIMPULAN DAN SARAN</h1>
+
+    <h2 class="section-title">8.1 Kesimpulan</h2>
+    <p class="no-indent">Dari hasil perancangan, implementasi, dan pengujian sistem ini, dapat ditarik kesimpulan:</p>
+    <ol>
+        <li>Sistem Informasi Layanan dan Konsultasi Hukum Berbasis Website pada Kantor Ahmad Handoko Law Office berhasil dibangun secara tuntas menggunakan framework Laravel 12 dengan memisahkan hak akses 3 aktor (Klien, Sekretaris, dan Pengacara) secara aman dan terisolasi.</li>
+        <li>Struktur basis data telah berhasil dinormalisasi hingga bentuk 3NF (<em>Third Normal Form</em>) sehingga menjamin efisiensi penyimpanan, integritas relasional, dan bebas dari anomali data.</li>
+        <li>Sistem berhasil menghadirkan solusi pembayaran mutakhir berupa <strong>QRIS Dinamis Otomatis</strong> yang mengkalkulasi nominal tagihan secara dinamis berbasis standar EMVCo nasional tanpa ketergantungan rapuh pada pihak ketiga.</li>
+        <li>Fitur konsultasi daring (<em>live chat</em>) dan linimasa perkara terbukti memudahkan pencari keadilan untuk berkonsultasi langsung dengan advokat secara transparan, terdokumentasi, dan akuntabel.</li>
+    </ol>
+
+    <h2 class="section-title">8.2 Saran Pengembangan Selanjutnya</h2>
+    <ol>
+        <li>Penambahan integrasi WhatsApp Gateway API (seperti Fonnte atau Twilio) untuk mengirimkan notifikasi otomatis saat jadwal temu terbit atau ada update sidang baru.</li>
+        <li>Implementasi Webhook Callback otomatis dari perbankan/PG untuk verifikasi pembayaran tanpa memerlukan pengecekan manual bukti transfer.</li>
+    </ol>
+
+    <div style="margin-top: 40px; text-align: center; border-top: 2px solid #0f172a; padding-top: 20px;">
+        <p style="font-size: 10pt; font-weight: 700; color: #0f172a; margin: 0;">
+            AHMAD HANDOKO LAW OFFICE &bull; SISTEM INFORMASI HUKUM 2026
+        </p>
+        <p style="font-size: 8.5pt; color: #64748b; margin: 3px 0 0 0;">
+            Dokumen Laporan Resmi Proyek Perangkat Lunak untuk Repositori GitHub Tugas Skripsi
+        </p>
+    </div>
+
+</body>
+</html>
